@@ -1,0 +1,26 @@
+{
+  "name": "hashaby",
+  "description": "URI fragment extension",
+  "main": "dist/hashby.js",
+  "authors": [
+    "IWABUCHI Yu (u)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "hash",
+    "fragment"
+  ],
+  "moduleType": [],
+  "homepage": "http://butchi.jp/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.1"
+  }
+}
