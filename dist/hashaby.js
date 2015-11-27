@@ -34,6 +34,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _classCallCheck(this, Hashaby);
 
       this.allowDomainArr = ['localhost'];
+      this.forceHashchange = true;
+
+      $(function () {
+        $(document).on('click', 'a[href]', function (evt) {
+          if (_this.forceHashchange) {
+            var $elm = $(evt.target);
+            var href = $elm.attr('href');
+
+            if (href.match(/^#/)) {
+              _this.clearHash();
+              location.replace(href);
+            }
+          }
+        });
+      });
 
       $(window).on('load hashchange', function (evt) {
         var hash = location.hash;

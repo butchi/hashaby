@@ -24,6 +24,21 @@
   class Hashaby {
     constructor() {
       this.allowDomainArr = ['localhost'];
+      this.forceHashchange = true;
+
+      $(() => {
+        $(document).on('click', 'a[href]', (evt) => {
+          if(this.forceHashchange) {
+            var $elm = $(evt.target);
+            var href = $elm.attr('href');
+
+            if(href.match(/^#/)) {
+              this.clearHash();
+              location.replace(href);
+            }
+          }
+        });
+      });
 
       $(window).on('load hashchange', (evt) => {
         var hash = location.hash;
