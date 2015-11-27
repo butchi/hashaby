@@ -3,14 +3,14 @@ var modeLi = {
   query:     '?', // ハッシュ値をセレクタとしてジャンプ
   exec:      ';', // ハッシュを評価
   jump:      '=', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
-}
+};
 
 var modeName = {
   FIND_CLASS: 'findClass',
   QUERY:      'query',
   EXEC:       'exec',
   JUMP:       'jump',
-}
+};
 
 function clearHash() {
   var href = location.href;
