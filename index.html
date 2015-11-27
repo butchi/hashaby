@@ -15,7 +15,7 @@ body {
   <div class="wrapper">
     <section id="section1">
       <p>あああ</p>
-      <p><a href="#.section2">#.section2</a> <a href="#?section">#?section</a> <a href="#;alert(5)">#;alert(5)</a> <a href="#='.section' + '2'">#='.section' + '2'</a> <a href="#+showMessage('thanks', 'world')">#+showMessage('thanks', 'world')</a></p>
+      <p><a href="#.section2">#.section2</a> <a href="#?section">#?section</a> <a href="#;alert(5)">#;alert(5)</a> <a href="#='.section' + '2'">#='.section' + '2'</a> <a href="#+showMessage">#+showMessage</a></p>
     </section>
     <section class="section2">
       <p>いいい</p>
@@ -34,9 +34,8 @@ window.licker = window.licker || {};
   hashaby.allowDomain('butchi.github.io');
   hashaby.with('window.licker');
 
-  ns.showMessage = function(message1, message2) {
-    alert(message1);
-    alert(message2);
+  ns.showMessage = function() {
+    alert('Thanks, world!');
   }
 
 })(window.licker);

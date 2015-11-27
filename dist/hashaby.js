@@ -99,14 +99,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jumpTo($elm);
         }
       }
+
+      // とりあえず引数なし関数のみ実行できるように
+
     }, {
       key: 'func',
       value: function func(cmdStr) {
         // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
-        var expr = nameSpace + '.' + cmdStr;
-        try {
-          Function(expr)(); // XSSの虞あり
-        } catch (err) {}
+        var methodName;
+        var expr;
+        var method;
+
+        if (nameSpace) {
+          methodName = cmdStr.match(/(^[^(]+)/)[1];
+          expr = nameSpace + '.' + methodName;
+
+          try {
+            var f = eval(expr);
+            if (typeof f === 'function') {
+              f();
+            }
+          } catch (err) {}
+        }
       }
     }, {
       key: 'allowDomain',

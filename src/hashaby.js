@@ -85,12 +85,24 @@
       }
     }
 
+    // とりあえず引数なし関数のみ実行できるように
     func(cmdStr) {
       // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
-      var expr = nameSpace + '.' + cmdStr;
-      try {
-        Function(expr)(); // XSSの虞あり
-      } catch(err) {
+      var methodName;
+      var expr;
+      var method;
+
+      if(nameSpace) {
+        methodName = cmdStr.match(/(^[^(]+)/)[1];
+        expr = nameSpace + '.' + methodName;
+
+        try {
+          let f = eval(expr);
+          if(typeof f === 'function') {
+            f();
+          }
+        } catch(err) {
+        }
       }
     }
 
