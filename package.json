@@ -2,7 +2,7 @@
   "name": "hashaby",
   "version": "0.0.1",
   "description": "URI fragment extension",
-  "main": "dist/hashby.js",
+  "main": "dist/hashaby.js",
   "keywords": [
     "hash",
     "fragment"

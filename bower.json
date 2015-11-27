@@ -1,7 +1,7 @@
 {
   "name": "hashaby",
   "description": "URI fragment extension",
-  "main": "dist/hashby.js",
+  "main": "dist/hashaby.js",
   "authors": [
     "IWABUCHI Yu(u)ki"
   ],
