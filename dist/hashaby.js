@@ -105,7 +105,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
         var expr = nameSpace + '.' + cmdStr;
         try {
-          new Function('return ' + expr)();
+          Function(expr)(); // XSSの虞あり
         } catch (err) {}
       }
     }, {
