@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>hashaby</title>
+
+  <style>
+body {
+  height: 2000px;
+  margin-top: 500px;
+}
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <section id="section1">
+      <p>あああ</p>
+    </section>
+    <section class="section2">
+      <p>いいい</p>
+    </section>
+    <section data-id="section3">
+      <p>ううう</p>
+    </section>
+  </div>
+
+  <script src="js/lib/jquery.js"></script>
+  <script src="js/lib/lodash.js"></script>
+  <script>
+var modeLi = {
+  findClass: '.', // 特定のクラスの位置にジャンプ
+  query:     '?', // ハッシュ値をセレクタとしてジャンプ
+  exec:      ';', // ハッシュを評価
+  jump:      '=', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
+}
+
+var modeName = {
+  FIND_CLASS: 'findClass',
+  QUERY:      'query',
+  EXEC:       'exec',
+  JUMP:       'jump',
+}
+
+function clearHash() {
+  var href = location.href;
+  if(/^http/.test(href)) {
+    var noHashHref = href.replace(/#.*$/, '');
+    history.pushState(null, null, noHashHref);
+  }
+}
+
+$(window).on('load hashchange', function(evt) {
+  var hash = location.hash;
+  var cmdStr = '';
+  var cmd = _.noop;
+  var operator = hash[1];
+  var mode = '';
+
+  var $elm;
+
+  function jumpTo($target) {
+    var top = $target.offset().top;
+
+    $('body,html').scrollTop(top);
+  }
+
+  if(_.contains(_.values(modeLi), operator)) {
+    mode = _.invert(modeLi)[operator];
+    cmdStr = hash.replace(/^#./, '');
+
+    if(false) {
+    } else if(mode === modeName.FIND_CLASS) {
+      // $elm = $('[class="' + cmdStr + '"]');
+      $elm = $('.' + cmdStr);
+      jumpTo($elm);
+    } else if(mode === modeName.QUERY) {
+      $elm = $(cmdStr);
+      jumpTo($elm);
+    } else if(mode === modeName.EXEC) {
+      eval(cmdStr);
+    } else if(mode === modeName.JUMP) {
+      $elm = $(eval(cmdStr));
+      jumpTo($elm);
+    } else if(true) {
+    }
+  }
+});
+  </script>
+</body>
+</html>
