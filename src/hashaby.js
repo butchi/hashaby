@@ -4,6 +4,7 @@
     query:     '?', // ハッシュ値をセレクタとしてジャンプ
     exec:      ';', // ハッシュを評価
     jump:      '=', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
+    func:      '+', // ローカル（nameSpace以下）の関数
   };
 
   var modeName = {
@@ -11,9 +12,11 @@
     QUERY:      'query',
     EXEC:       'exec',
     JUMP:       'jump',
+    FUNC:       'func',
   };
 
   var isAllowDomain;
+  var nameSpace = null;
 
   function jumpTo($target) {
     var top = $target.offset().top;
@@ -82,8 +85,21 @@
       }
     }
 
+    func(cmdStr) {
+      // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
+      var expr = nameSpace + '.' + cmdStr;
+      try {
+        new Function('return ' + expr)();
+      } catch(err) {
+      }
+    }
+
     allowDomain(hostname) {
       this.allowDomainArr.push(hostname);
+    }
+
+    with(obj) {
+      nameSpace = obj;
     }
 
     clearHash() {

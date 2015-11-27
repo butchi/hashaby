@@ -9,17 +9,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     findClass: '.', // 特定のクラスの位置にジャンプ
     query: '?', // ハッシュ値をセレクタとしてジャンプ
     exec: ';', // ハッシュを評価
-    jump: '=' };
+    jump: '=', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
+    func: '+' };
 
-  // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
+  // ローカル（nameSpace以下）の関数
   var modeName = {
     FIND_CLASS: 'findClass',
     QUERY: 'query',
     EXEC: 'exec',
-    JUMP: 'jump'
+    JUMP: 'jump',
+    FUNC: 'func'
   };
 
   var isAllowDomain;
+  var nameSpace = null;
 
   function jumpTo($target) {
     var top = $target.offset().top;
@@ -97,9 +100,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }
     }, {
+      key: 'func',
+      value: function func(cmdStr) {
+        // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
+        var expr = nameSpace + '.' + cmdStr;
+        try {
+          new Function('return ' + expr)();
+        } catch (err) {}
+      }
+    }, {
       key: 'allowDomain',
       value: function allowDomain(hostname) {
         this.allowDomainArr.push(hostname);
+      }
+    }, {
+      key: 'with',
+      value: function _with(obj) {
+        nameSpace = obj;
       }
     }, {
       key: 'clearHash',
