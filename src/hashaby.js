@@ -20,7 +20,7 @@ function clearHash() {
   }
 }
 
-$(window).on('load hashchange', function(evt) {
+$(window).on('load hashchange', (evt) => {
   var hash = location.hash;
   var cmdStr = '';
   var cmd = _.noop;
