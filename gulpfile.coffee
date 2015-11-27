@@ -1,6 +1,7 @@
 'use strict'
 
 gulp = require 'gulp'
+runSequence = require 'run-sequence'
 babel = require 'gulp-babel'
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
@@ -14,7 +15,7 @@ gulp.task 'serve', () ->
       livereload: true,
       directoryListing: false,
       open: true,
-  gulp.watch 'assets/js-src/main.js', ['babel-home']
+  gulp.watch 'src/hashaby.js', ['build']
 
 gulp.task 'babel', () ->
   return gulp.src('src/hashaby.js')
@@ -23,16 +24,17 @@ gulp.task 'babel', () ->
     )
     .pipe do babel
     .pipe (gulp.dest 'dist')
-    .pipe do uglify
-    .pipe (gulp.dest '')
 
 gulp.task 'minify', () ->
-    gulp.src('dist/hashaby.js')
-        .pipe (uglify {})
-        .pipe (rename 'hashaby.min.js')
-        .pipe (gulp.dest 'dist')
+  gulp.src('dist/hashaby.js')
+    .pipe (uglify {})
+    .pipe (rename 'hashaby.min.js')
+    .pipe (gulp.dest 'dist')
 
-gulp.task "watch", () ->
-  gulp.watch('src/hashaby.js', ['babel'])
+gulp.task 'build', () ->
+  runSequence 'babel', 'minify'
 
-gulp.task "default", ['babel', 'minify']
+gulp.task 'watch', () ->
+  gulp.watch('src/hashaby.js', ['build'])
+
+gulp.task 'default', ['build']
