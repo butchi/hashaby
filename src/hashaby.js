@@ -18,6 +18,7 @@
   var isAllowDomain;
   var nameSpace = null;
 
+  // TODO: jQuery脱却
   function jumpTo($target) {
     var top = $target.offset().top;
 
@@ -29,6 +30,8 @@
       this.allowDomainArr = ['localhost'];
       this.forceHashchange = true;
 
+      // TODO: デリゲートのjQuery脱却
+      // TODO: フラグではなくon/off制御
       $(() => {
         $(document).on('click', 'a[href]', (evt) => {
           if(this.forceHashchange) {
@@ -45,14 +48,12 @@
 
       $(window).on('load hashchange', (evt) => {
         var hash = location.hash;
-        var cmdStr = '';
-        var cmd = _.noop;
         var operator = hash[1];
-        var mode = '';
 
+        // TODO: underscore脱却
         if(_.contains(_.values(modeLi), operator)) {
-          mode = _.invert(modeLi)[operator];
-          cmdStr = hash.replace(/^#./, '');
+          let mode = _.invert(modeLi)[operator];
+          let cmdStr = hash.replace(/^#./, '');
           isAllowDomain = _.contains(this.allowDomainArr, location.hostname);
 
           this[mode](cmdStr);
@@ -60,12 +61,14 @@
       });
     }
 
+    // TODO: querySelector使う
     findClass(cmdStr) {
       // var $elm = $('[class="' + cmdStr + '"]');
       var $elm = $('.' + cmdStr);
       jumpTo($elm);
     }
 
+    // TODO: querySelector使う
     query(cmdStr) {
       var $elm = $(cmdStr);
       jumpTo($elm);
@@ -77,6 +80,7 @@
       }
     }
 
+    // TODO: querySelector使う
     jump(cmdStr) {
       var $elm;
       if(isAllowDomain) {
@@ -99,6 +103,7 @@
       }
     }
 
+    // TODO: ワイルドカード指定
     allowDomain(hostname) {
       this.allowDomainArr.push(hostname);
     }
@@ -110,6 +115,7 @@
       }
     }
 
+    // 今のところHTMLをファイルとして開いた時に動作しない
     clearHash() {
       var href = location.href;
       if(/^http/.test(href)) {

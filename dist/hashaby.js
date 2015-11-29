@@ -26,6 +26,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   var isAllowDomain;
   var nameSpace = null;
 
+  // TODO: jQuery脱却
   function jumpTo($target) {
     var top = $target.offset().top;
 
@@ -41,6 +42,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.allowDomainArr = ['localhost'];
       this.forceHashchange = true;
 
+      // TODO: デリゲートのjQuery脱却
+      // TODO: フラグではなくon/off制御
       $(function () {
         $(document).on('click', 'a[href]', function (evt) {
           if (_this.forceHashchange) {
@@ -59,6 +62,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var hash = location.hash;
         var operator = hash[1];
 
+        // TODO: underscore脱却
         if (_.contains(_.values(modeLi), operator)) {
           var mode = _.invert(modeLi)[operator];
           var cmdStr = hash.replace(/^#./, '');
@@ -69,6 +73,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       });
     }
 
+    // TODO: querySelector使う
+
     _createClass(Hashaby, [{
       key: 'findClass',
       value: function findClass(cmdStr) {
@@ -76,6 +82,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         var $elm = $('.' + cmdStr);
         jumpTo($elm);
       }
+
+      // TODO: querySelector使う
+
     }, {
       key: 'query',
       value: function query(cmdStr) {
@@ -89,6 +98,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           eval(cmdStr);
         }
       }
+
+      // TODO: querySelector使う
+
     }, {
       key: 'jump',
       value: function jump(cmdStr) {
@@ -115,6 +127,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }
+
+      // TODO: ワイルドカード指定
+
     }, {
       key: 'allowDomain',
       value: function allowDomain(hostname) {
@@ -130,6 +145,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           nameSpace = obj;
         }
       }
+
+      // 今のところHTMLをファイルとして開いた時に動作しない
+
     }, {
       key: 'clearHash',
       value: function clearHash() {
