@@ -88,20 +88,13 @@
     // とりあえず引数なし関数のみ実行できるように
     func(cmdStr) {
       // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
-      var methodName;
-      var expr;
-      var method;
 
       if(nameSpace) {
-        methodName = cmdStr.match(/(^[^(]+)/)[1];
-        expr = nameSpace + '.' + methodName;
+        let methodName = cmdStr.match(/(^[^(]+)/)[1];
 
-        try {
-          let f = eval(expr);
-          if(typeof f === 'function') {
-            f();
-          }
-        } catch(err) {
+        let f = nameSpace[methodName];
+        if(typeof f === 'function') {
+          f();
         }
       }
     }
@@ -110,8 +103,11 @@
       this.allowDomainArr.push(hostname);
     }
 
+    // func用のnameSpaceの設定関数
     with(obj) {
-      nameSpace = obj;
+      if(typeof obj === 'object') {
+        nameSpace = obj;
+      }
     }
 
     clearHash() {

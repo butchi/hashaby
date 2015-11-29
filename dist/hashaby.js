@@ -2,6 +2,8 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function () {
@@ -106,20 +108,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       key: 'func',
       value: function func(cmdStr) {
         // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
-        var methodName;
-        var expr;
-        var method;
 
         if (nameSpace) {
-          methodName = cmdStr.match(/(^[^(]+)/)[1];
-          expr = nameSpace + '.' + methodName;
+          var methodName = cmdStr.match(/(^[^(]+)/)[1];
 
-          try {
-            var f = eval(expr);
-            if (typeof f === 'function') {
-              f();
-            }
-          } catch (err) {}
+          var f = nameSpace[methodName];
+          if (typeof f === 'function') {
+            f();
+          }
         }
       }
     }, {
@@ -127,10 +123,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       value: function allowDomain(hostname) {
         this.allowDomainArr.push(hostname);
       }
+
+      // func用のnameSpaceの設定関数
+
     }, {
       key: 'with',
       value: function _with(obj) {
-        nameSpace = obj;
+        if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
+          nameSpace = obj;
+        }
       }
     }, {
       key: 'clearHash',
