@@ -57,14 +57,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
       $(window).on('load hashchange', function (evt) {
         var hash = location.hash;
-        var cmdStr = '';
-        var cmd = _.noop;
         var operator = hash[1];
-        var mode = '';
 
         if (_.contains(_.values(modeLi), operator)) {
-          mode = _.invert(modeLi)[operator];
-          cmdStr = hash.replace(/^#./, '');
+          var mode = _.invert(modeLi)[operator];
+          var cmdStr = hash.replace(/^#./, '');
           isAllowDomain = _.contains(_this.allowDomainArr, location.hostname);
 
           _this[mode](cmdStr);
