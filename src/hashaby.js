@@ -19,8 +19,8 @@
   var nameSpace = null;
 
   // TODO: jQuery脱却
-  function jumpTo($target) {
-    var top = $target.offset().top;
+  function jumpTo(target) {
+    var top = $(target).offset().top;
 
     $('body,html').scrollTop(top);
   }
@@ -69,17 +69,15 @@
       });
     }
 
-    // TODO: querySelector使う
     findClass(cmdStr) {
       // var $elm = $('[class="' + cmdStr + '"]');
-      var $elm = $('.' + cmdStr);
-      jumpTo($elm);
+      var elm = document.querySelector('.' + cmdStr);
+      jumpTo(elm);
     }
 
-    // TODO: querySelector使う
     query(cmdStr) {
-      var $elm = $(cmdStr);
-      jumpTo($elm);
+      var elm = document.querySelector(cmdStr);
+      jumpTo(elm);
     }
 
     exec(cmdStr) {
@@ -88,12 +86,11 @@
       }
     }
 
-    // TODO: querySelector使う
     jump(cmdStr) {
-      var $elm;
+      var elm;
       if(isAllowDomain) {
-        $elm = $(eval(cmdStr));
-        jumpTo($elm);
+        elm = document.querySelector(eval(cmdStr));
+        jumpTo(elm);
       }
     }
 

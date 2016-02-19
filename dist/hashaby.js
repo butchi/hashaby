@@ -27,8 +27,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   var nameSpace = null;
 
   // TODO: jQuery脱却
-  function jumpTo($target) {
-    var top = $target.offset().top;
+  function jumpTo(target) {
+    var top = $(target).offset().top;
 
     $('body,html').scrollTop(top);
   }
@@ -80,23 +80,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       });
     }
 
-    // TODO: querySelector使う
-
     _createClass(Hashaby, [{
       key: 'findClass',
       value: function findClass(cmdStr) {
         // var $elm = $('[class="' + cmdStr + '"]');
-        var $elm = $('.' + cmdStr);
-        jumpTo($elm);
+        var elm = document.querySelector('.' + cmdStr);
+        jumpTo(elm);
       }
-
-      // TODO: querySelector使う
-
     }, {
       key: 'query',
       value: function query(cmdStr) {
-        var $elm = $(cmdStr);
-        jumpTo($elm);
+        var elm = document.querySelector(cmdStr);
+        jumpTo(elm);
       }
     }, {
       key: 'exec',
@@ -105,16 +100,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           eval(cmdStr);
         }
       }
-
-      // TODO: querySelector使う
-
     }, {
       key: 'jump',
       value: function jump(cmdStr) {
-        var $elm;
+        var elm;
         if (isAllowDomain) {
-          $elm = $(eval(cmdStr));
-          jumpTo($elm);
+          elm = document.querySelector(eval(cmdStr));
+          jumpTo(elm);
         }
       }
 
