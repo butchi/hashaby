@@ -54,7 +54,15 @@
         if(_.contains(_.values(modeLi), operator)) {
           let mode = _.invert(modeLi)[operator];
           let cmdStr = hash.replace(/^#./, '');
-          isAllowDomain = _.contains(this.allowDomainArr, location.hostname);
+
+          this.allowDomainArr.forEach((domain) => {
+            if(false) {
+            } else if(typeof domain === 'string') {
+              isAllowDomain = isAllowDomain || (domain === location.hostname);
+            } else if(domain instanceof RegExp) {
+              isAllowDomain = isAllowDomain || domain.test(location.hostname);
+            }
+          });
 
           this[mode](cmdStr);
         }
@@ -103,7 +111,7 @@
       }
     }
 
-    // TODO: ワイルドカード指定
+    // 正規表現できたらワイルドカードは不要？
     allowDomain(hostname) {
       this.allowDomainArr.push(hostname);
     }

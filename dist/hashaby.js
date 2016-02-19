@@ -66,7 +66,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (_.contains(_.values(modeLi), operator)) {
           var mode = _.invert(modeLi)[operator];
           var cmdStr = hash.replace(/^#./, '');
-          isAllowDomain = _.contains(_this.allowDomainArr, location.hostname);
+
+          _this.allowDomainArr.forEach(function (domain) {
+            if (false) {} else if (typeof domain === 'string') {
+              isAllowDomain = isAllowDomain || domain === location.hostname;
+            } else if (domain instanceof RegExp) {
+              isAllowDomain = isAllowDomain || domain.test(location.hostname);
+            }
+          });
 
           _this[mode](cmdStr);
         }
@@ -128,7 +135,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }
 
-      // TODO: ワイルドカード指定
+      // 正規表現できたらワイルドカードは不要？
 
     }, {
       key: 'allowDomain',
