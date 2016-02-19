@@ -3,6 +3,14 @@
   "version": "0.0.1",
   "description": "URI fragment extension",
   "main": "dist/hashaby.js",
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "scripts": {
+    "start": "gulp serve",
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
   "keywords": [
     "hash",
     "fragment"
