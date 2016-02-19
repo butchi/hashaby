@@ -15,7 +15,7 @@ body {
   <div class="wrapper">
     <section id="section1">
       <p>あああ</p>
-      <p><a href="#.section2">#.section2</a> <a href="#?section">#?section</a> <a href="#;alert(5)">#;alert(5)</a> <a href="#='.section' + '2'">#='.section' + '2'</a> <a href="#+showMessage">#+showMessage</a></p>
+      <p><a href="#;hashaby.clearHash();">#;hashaby.clearHash();</a> <a href="#.section2">#.section2</a> <a href="#?section">#?section</a> <a href="#;alert(5)">#;alert(5)</a> <a href="#='.section' + '2'">#='.section' + '2'</a> <a href="#+showMessage">#+showMessage</a></p>
     </section>
     <section class="section2">
       <p>いいい</p>
@@ -31,7 +31,7 @@ body {
   <script>
 window.licker = window.licker || {};
 (function(ns) {
-  hashaby.allowDomain(/0\.0\.0\.0/);
+  // hashaby.allowDomain(/0\.0\.0\.0/);
   hashaby.allowDomain('butchi.github.io');
   hashaby.with(window.licker);
 
