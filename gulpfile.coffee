@@ -5,6 +5,7 @@ runSequence = require 'run-sequence'
 babel = require 'gulp-babel'
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
+decodecode = require 'gulp-decodecode'
 plumber = require 'gulp-plumber'
 notify = require 'gulp-notify'
 webserver = require 'gulp-webserver'
@@ -31,8 +32,16 @@ gulp.task 'minify', () ->
     .pipe (rename 'hashaby.min.js')
     .pipe (gulp.dest 'dist')
 
+gulp.task 'deco', () ->
+  gulp.src('dist/hashaby.js')
+    .pipe (decodecode
+      decoArr: ['ねん', 'ころ', 'りよ']
+    )
+    .pipe (rename 'hashaby.deco.js')
+    .pipe (gulp.dest 'dist')
+
 gulp.task 'build', () ->
-  runSequence 'babel', 'minify'
+  runSequence 'babel', 'minify', 'deco'
 
 gulp.task 'watch', () ->
   gulp.watch('src/hashaby.js', ['build'])
