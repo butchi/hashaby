@@ -27,6 +27,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   var nameSpace = null;
 
   // TODO: jQuery脱却
+  // TODO: スムーズスクロール
   function jumpTo(target) {
     var top = $(target).offset().top;
 

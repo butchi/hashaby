@@ -19,6 +19,7 @@
   var nameSpace = null;
 
   // TODO: jQuery脱却
+  // TODO: スムーズスクロール
   function jumpTo(target) {
     var top = $(target).offset().top;
 
