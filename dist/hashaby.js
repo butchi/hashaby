@@ -111,6 +111,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
 
       // とりあえず引数なし関数のみ実行できるように
+      // TODO: 文字列、数値などに限って引数を渡せるように
 
     }, {
       key: 'func',
