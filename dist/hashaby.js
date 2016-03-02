@@ -8,21 +8,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 (function () {
   var modeLi = {
-    findClass: '.', // 特定のクラスの位置にジャンプ
-    query: '?', // ハッシュ値をセレクタとしてジャンプ
-    exec: ';', // ハッシュを評価
-    jump: '=', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
-    func: '+' };
+    '.': 'findClass', // 特定のクラスの位置にジャンプ
+    '?': 'query', // ハッシュ値をセレクタとしてジャンプ
+    ';': 'exec', // ハッシュを評価
+    '=': 'jump', // ハッシュを評価した結果の文字列をセレクタとしてジャンプ
+    '+': 'func' };
 
   // ローカル（nameSpace以下）の関数
-  var modeName = {
-    FIND_CLASS: 'findClass',
-    QUERY: 'query',
-    EXEC: 'exec',
-    JUMP: 'jump',
-    FUNC: 'func'
-  };
-
   var isAllowDomain;
   var nameSpace = null;
 
@@ -62,10 +54,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       $(window).on('load hashchange', function (evt) {
         var hash = location.hash;
         var operator = hash[1];
+        var mode = modeLi[operator];
 
-        // TODO: underscore脱却
-        if (_.contains(_.values(modeLi), operator)) {
-          var mode = _.invert(modeLi)[operator];
+        if (mode !== undefined) {
           var cmdStr = hash.replace(/^#./, '');
 
           _this.allowDomainArr.forEach(function (domain) {
