@@ -119,7 +119,7 @@
     }
 
     // func用のnameSpaceの設定関数
-    with(obj) {
+    doWith(obj) {
       if(typeof obj === 'object') {
         nameSpace = obj;
       }

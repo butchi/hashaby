@@ -140,8 +140,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       // func用のnameSpaceの設定関数
 
     }, {
-      key: 'with',
-      value: function _with(obj) {
+      key: 'doWith',
+      value: function doWith(obj) {
         if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
           nameSpace = obj;
         }
