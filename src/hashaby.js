@@ -103,7 +103,7 @@
         } else if(!isNaN(numArg)) {
           argArr[i] = numArg;
         } else {
-          safeFlag = false
+          safeFlag = false;
         }
       });
 
