@@ -8,7 +8,7 @@
   };
 
   var isAllowDomain;
-  var nameSpace = null;
+  var nameSpace = window;
 
   // TODO: jQuery脱却
   // TODO: スムーズスクロール
@@ -86,18 +86,30 @@
       }
     }
 
-    // とりあえず引数なし関数のみ実行できるように
-    // TODO: 文字列、数値などに限って引数を渡せるように
     func(cmdStr) {
-      // var [_, fn, args] = cmdStr.match(/^(.+)\((.*)\)$/);
+      var matched = cmdStr.match(/^(.+)\((.*)\)$/) || cmdStr.match(/^(.+)$/) || [];
+      var methodName = matched[1];
+      var args = matched[2] || '';
+      var argArr = args.split(',');
 
-      if(nameSpace) {
-        let methodName = cmdStr.match(/(^[^(]+)/)[1];
+      var safeFlag = true;
 
-        let f = nameSpace[methodName];
-        if(typeof f === 'function') {
-          f();
+      argArr.forEach((arg, i) => {
+        var strArg = (arg.match(/"(.*)"/) || arg.match(/'(.*)'/) || [])[1];
+        var numArg = Number(arg);
+        if(false) {
+        } else if(strArg) {
+          argArr[i] = String(strArg);
+        } else if(!isNaN(numArg)) {
+          argArr[i] = numArg;
+        } else {
+          safeFlag = false
         }
+      });
+
+      var f = nameSpace[methodName];
+      if(typeof f === 'function' && safeFlag) {
+        f.apply(null, argArr);
       }
     }
 

@@ -15,7 +15,17 @@ body {
   <div class="wrapper">
     <section id="section1">
       <p>あああ</p>
-      <p><a href="#;hashaby.clearHash();">#;hashaby.clearHash();</a> <a href="#.section2">#.section2</a> <a href="#?section">#?section</a> <a href="#;alert(5)">#;alert(5)</a> <a href="#='.section' + '2'">#='.section' + '2'</a> <a href="#+showMessage">#+showMessage</a></p>
+      <p>
+        <a href="#;hashaby.clearHash();">#;hashaby.clearHash();</a>
+        <a href="#.section2">#.section2</a>
+        <a href="#?section">#?section</a>
+        <a href="#;alert(5)">#;alert(5)</a>
+        <a href="#='.section' + '2'">#='.section' + '2'</a>
+        <a href="#+showMessage">#+showMessage</a>
+        <a href="#+showArg(5)">#+showArg(5)</a>
+        <a href="#+showArg('hoge')">#+showArg('hoge')</a>
+        <a href="#+showArgs(3, 'piyo')">#+showArgs(3, 'piyo')</a>
+      </p>
     </section>
     <section class="section2">
       <p>いいい</p>
@@ -36,6 +46,14 @@ window.licker = window.licker || {};
 
   ns.showMessage = function() {
     alert('Thanks, world!');
+  }
+
+  ns.showArg = function(arg) {
+    alert('Argument: ' + arg);
+  }
+
+  ns.showArgs = function() {
+    alert('Arguments: ' + [].join.call(arguments, ','));
   }
 
 })(window.licker);
