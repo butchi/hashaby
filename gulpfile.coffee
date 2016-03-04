@@ -27,24 +27,24 @@ gulp.task 'js', () ->
     .transform(debowerify)
     .bundle()
     .pipe(source('hashaby.js'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('.'));
 
 gulp.task 'minify', () ->
-  gulp.src('dist/hashaby.js')
+  gulp.src('hashaby.js')
     .pipe (uglify {
       preserveComments: 'license',
     })
     .pipe (rename 'hashaby.min.js')
-    .pipe (gulp.dest 'dist')
+    .pipe (gulp.dest '.')
 
 gulp.task 'deco', () ->
-  gulp.src('dist/hashaby.js')
+  gulp.src('hashaby.js')
     .pipe (decodecode
       preserveComments: 'license',
       decoArr: ['ねん', 'ころ', 'りよ']
     )
     .pipe (rename 'hashaby.deco.js')
-    .pipe (gulp.dest 'dist')
+    .pipe (gulp.dest '.')
 
 gulp.task 'build', () ->
   runSequence 'js', 'minify', 'deco'
