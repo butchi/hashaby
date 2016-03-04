@@ -31,13 +31,16 @@ gulp.task 'js', () ->
 
 gulp.task 'minify', () ->
   gulp.src('dist/hashaby.js')
-    .pipe (uglify {})
+    .pipe (uglify {
+      preserveComments: 'license',
+    })
     .pipe (rename 'hashaby.min.js')
     .pipe (gulp.dest 'dist')
 
 gulp.task 'deco', () ->
   gulp.src('dist/hashaby.js')
     .pipe (decodecode
+      preserveComments: 'license',
       decoArr: ['ねん', 'ころ', 'りよ']
     )
     .pipe (rename 'hashaby.deco.js')
