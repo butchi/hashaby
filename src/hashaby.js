@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 (() => {
   var modeLi = {
     '.': 'findClass', // 特定のクラスの位置にジャンプ
