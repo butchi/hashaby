@@ -33,7 +33,7 @@ import $ from 'jquery';
             var $elm = $(evt.target);
             var href = $elm.attr('href');
 
-            if(href.match(/^#/)) {
+            if(typeof href === 'string' && href.match(/^#/)) {
               this.clearHash();
               location.replace(href);
             }

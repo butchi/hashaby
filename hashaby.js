@@ -1507,7 +1507,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var $elm = (0, _jquery2.default)(evt.target);
             var href = $elm.attr('href');
 
-            if (href.match(/^#/)) {
+            if (typeof href === 'string' && href.match(/^#/)) {
               _this.clearHash();
               location.replace(href);
             }
