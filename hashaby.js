@@ -1565,6 +1565,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           jumpTo(elm);
         }
       }
+
+      // TODO: コマンドに')'を含む文字列を渡せないのを解消
+
     }, {
       key: 'func',
       value: function func(cmdStr) {

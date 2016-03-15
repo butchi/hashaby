@@ -88,6 +88,7 @@ import $ from 'jquery';
       }
     }
 
+    // TODO: コマンドに')'を含む文字列を渡せないのを解消
     func(cmdStr) {
       var matched = cmdStr.match(/^(.+)\((.*)\)$/) || cmdStr.match(/^(.+)$/) || [];
       var methodName = matched[1];
