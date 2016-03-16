@@ -1,7 +1,6 @@
 'use strict'
 
 gulp = require 'gulp'
-runSequence = require 'run-sequence'
 source = require 'vinyl-source-stream';
 browserify = require 'browserify';
 babelify = require 'babelify';
@@ -9,9 +8,11 @@ debowerify = require 'debowerify';
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
 decodecode = require 'gulp-decodecode'
-plumber = require 'gulp-plumber'
-notify = require 'gulp-notify'
-webserver = require 'gulp-webserver'
+browserSync = require 'browser-sync'
+
+NAME = 'hashaby'
+SRC = './src'
+DEST = '.'
 
 gulp.task 'serve', () ->
   gulp.src '.'
@@ -21,35 +22,43 @@ gulp.task 'serve', () ->
       open: true,
   gulp.watch 'src/hashaby.js', ['build']
 
-gulp.task 'js', () ->
-  return browserify('src/hashaby.js')
+gulp.task 'browserify', () ->
+  return browserify("#{SRC}/#{NAME}.js")
     .transform(babelify)
     .transform(debowerify)
     .bundle()
-    .pipe(source('hashaby.js'))
-    .pipe(gulp.dest('.'));
+    .pipe(source("#{NAME}.js"))
+    .pipe(gulp.dest("#{DEST}"))
 
 gulp.task 'minify', () ->
-  gulp.src('hashaby.js')
+  gulp.src("#{DEST}/#{NAME}.js")
     .pipe (uglify {
       preserveComments: 'license',
     })
-    .pipe (rename 'hashaby.min.js')
-    .pipe (gulp.dest '.')
+    .pipe (rename "#{NAME}.min.js")
+    .pipe (gulp.dest "#{DEST}")
 
 gulp.task 'deco', () ->
-  gulp.src('hashaby.js')
+  gulp.src("#{DEST}/#{NAME}.js")
     .pipe (decodecode
       preserveComments: 'license',
-      decoArr: ['ねん', 'ころ', 'りよ']
+      decoArr: ['s', 't', 'b'],
     )
-    .pipe (rename 'hashaby.deco.js')
-    .pipe (gulp.dest '.')
+    .pipe (rename "#{NAME}.deco.js")
+    .pipe (gulp.dest "#{DEST}")
 
-gulp.task 'build', () ->
-  runSequence 'js', 'minify', 'deco'
+# gulp.task 'js', gulp.parallel('browserify')
+gulp.task 'js', gulp.series('browserify', gulp.parallel('minify', 'deco'))
 
-gulp.task 'watch', () ->
-  gulp.watch('src/hashaby.js', ['build'])
+gulp.task 'browser-sync' , () ->
+  browserSync
+    server: {
+      baseDir: DEST
+    }
 
-gulp.task 'default', ['build']
+  gulp.watch(["#{SRC}/**/*.js"], gulp.series('browserify', browserSync.reload));
+
+gulp.task('serve', gulp.series('browser-sync'));
+
+gulp.task('build', gulp.parallel('js'));
+gulp.task 'default', gulp.series('build', 'serve');
