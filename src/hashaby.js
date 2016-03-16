@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import Gator from 'gator';
 import SweetScroll from "sweet-scroll";
 
 (() => {
@@ -26,24 +26,21 @@ import SweetScroll from "sweet-scroll";
       this.forceHashchange = true;
 
       // 同じハッシュで何度も発火できるように
-      // TODO: デリゲートのjQuery脱却
       // TODO: フラグではなくon/off制御
-      $(() => {
-        $(document).on('click', 'a[href]', (evt) => {
-          if(this.forceHashchange) {
-            let $elm = $(evt.target);
-            let href = $elm.attr('href');
+      Gator(document).on('click', 'a[href]', (evt) => {
+        if(this.forceHashchange) {
+          let elm = evt.target;
+          let href = elm.getAttribute('href');
 
-            // TODO: href='#'のときに戻れない→ここもpushState?
-            if(typeof href === 'string' && href.match(/^#/)) {
-              this.clearHash();
-              location.replace(href);
-            }
+          // TODO: href='#'のときに戻れない→ここもpushState?
+          if(typeof href === 'string' && href.match(/^#/)) {
+            this.clearHash();
+            location.replace(href);
           }
-        });
+        }
       });
 
-      $(window).on('load hashchange', (evt) => {
+      var hashchangeHandler = (evt) => {
         var hash = location.hash;
         var operator = hash[1];
         var mode = modeLi[operator];
@@ -62,7 +59,10 @@ import SweetScroll from "sweet-scroll";
 
           this[mode](cmdStr);
         }
-      });
+      };
+
+      window.addEventListener('load', hashchangeHandler);
+      window.addEventListener('hashchange', hashchangeHandler);
     }
 
     findClass(cmdStr) {
