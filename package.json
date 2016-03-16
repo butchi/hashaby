@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "gator": "^1.2.4",
-    "jquery": "2.2.1",
     "sweet-scroll": "^0.2.5"
   }
 }
