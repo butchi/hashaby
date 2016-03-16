@@ -56,7 +56,8 @@ gulp.task 'browser-sync' , () ->
       baseDir: DEST
     }
 
-  gulp.watch(["#{SRC}/**/*.js"], gulp.series('browserify', browserSync.reload));
+  gulp.watch(["#{SRC}/**/*.js"], gulp.series('js', browserSync.reload));
+  gulp.watch(["#{DEST}/index.html"], browserSync.reload);
 
 gulp.task('serve', gulp.series('browser-sync'));
 
