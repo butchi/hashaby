@@ -141,5 +141,5 @@ import SweetScroll from "sweet-scroll";
   }
 
   // export
-  window.hashaby = new Hashaby();
+  global.hashaby = new Hashaby();
 })(global.jQuery);

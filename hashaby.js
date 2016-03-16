@@ -2828,7 +2828,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   // export
 
 
-  window.hashaby = new Hashaby();
+  global.hashaby = new Hashaby();
 })(global.jQuery);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
