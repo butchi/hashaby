@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import SweetScroll from "sweet-scroll";
 
 (() => {
   var modeLi = {
@@ -12,12 +13,11 @@ import $ from 'jquery';
   var isAllowDomain;
   var nameSpace = window;
 
-  // TODO: jQuery脱却
-  // TODO: スムーズスクロール
-  function jumpTo(target) {
-    var top = $(target).offset().top;
+  const sweetScroll = new SweetScroll();
 
-    $('body,html').scrollTop(top);
+  // TODO: SweetScrollカスタマイズ
+  function jumpTo(target) {
+    sweetScroll.toElement(target);
   }
 
   class Hashaby {
@@ -140,4 +140,4 @@ import $ from 'jquery';
 
   // export
   window.hashaby = new Hashaby();
-})();
+})(global.jQuery);
