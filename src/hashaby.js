@@ -25,14 +25,16 @@ import SweetScroll from "sweet-scroll";
       this.allowDomainArr = ['localhost'];
       this.forceHashchange = true;
 
+      // 同じハッシュで何度も発火できるように
       // TODO: デリゲートのjQuery脱却
       // TODO: フラグではなくon/off制御
       $(() => {
         $(document).on('click', 'a[href]', (evt) => {
           if(this.forceHashchange) {
-            var $elm = $(evt.target);
-            var href = $elm.attr('href');
+            let $elm = $(evt.target);
+            let href = $elm.attr('href');
 
+            // TODO: href='#'のときに戻れない→ここもpushState?
             if(typeof href === 'string' && href.match(/^#/)) {
               this.clearHash();
               location.replace(href);

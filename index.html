@@ -16,7 +16,7 @@ body {
     <section id="section1">
       <p>あああ</p>
       <p>
-        <a href="#;hashaby.clearHash();">#;hashaby.clearHash();</a>
+        <a href="#+clearHash">#+clearHash</a>
         <a href="http://www.example.com/" target="_blank">http://www.example.com/</a>
         <a href="#.section2">#.section2</a>
         <a href="#?section">#?section</a>
@@ -43,6 +43,10 @@ window.licker = window.licker || {};
   // hashaby.allowDomain(/0\.0\.0\.0/);
   hashaby.allowDomain('butchi.github.io');
   hashaby.doWith(window.licker);
+
+  ns.clearHash = function() {
+    hashaby.clearHash();
+  }
 
   ns.showMessage = function() {
     alert('Thanks, world!');

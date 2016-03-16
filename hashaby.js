@@ -2692,6 +2692,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       this.allowDomainArr = ['localhost'];
       this.forceHashchange = true;
 
+      // 同じハッシュで何度も発火できるように
       // TODO: デリゲートのjQuery脱却
       // TODO: フラグではなくon/off制御
       (0, _jquery2.default)(function () {
@@ -2700,6 +2701,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var $elm = (0, _jquery2.default)(evt.target);
             var href = $elm.attr('href');
 
+            // TODO: href='#'のときに戻れない→ここもpushState?
             if (typeof href === 'string' && href.match(/^#/)) {
               _this.clearHash();
               location.replace(href);
