@@ -1,5 +1,6 @@
 {
   "name": "hashaby",
+  "version": "0.1.0",
   "description": "URI fragment extension",
   "main": "hashaby.min.js",
   "authors": [
