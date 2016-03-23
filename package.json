@@ -36,8 +36,5 @@
     "run-sequence": "^1.1.5",
     "vinyl-source-stream": "^1.1.0"
   },
-  "dependencies": {
-    "gator": "^1.2.4",
-    "sweet-scroll": "^0.2.5"
-  }
+  "dependencies": {}
 }
