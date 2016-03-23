@@ -2,7 +2,7 @@
   "name": "hashaby",
   "version": "0.0.1",
   "description": "URI fragment extension",
-  "main": "dist/hashaby.js",
+  "main": "hashaby.js",
   "engines": {
     "node": ">=4.2.4"
   },
