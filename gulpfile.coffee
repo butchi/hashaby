@@ -42,7 +42,7 @@ gulp.task 'deco', () ->
   gulp.src("#{DEST}/#{NAME}.js")
     .pipe (decodecode
       preserveComments: 'license',
-      decoArr: ['s', 't', 'b'],
+      decoArr: ['ねん', 'ころ', 'りよ'],
     )
     .pipe (rename "#{NAME}.deco.js")
     .pipe (gulp.dest "#{DEST}")
