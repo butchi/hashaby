@@ -1,10 +1,10 @@
 'use strict'
 
 gulp = require 'gulp'
-source = require 'vinyl-source-stream';
-browserify = require 'browserify';
-babelify = require 'babelify';
-debowerify = require 'debowerify';
+source = require 'vinyl-source-stream'
+browserify = require 'browserify'
+babelify = require 'babelify'
+debowerify = require 'debowerify'
 rename = require 'gulp-rename'
 uglify = require 'gulp-uglify'
 decodecode = require 'gulp-decodecode'
@@ -56,10 +56,10 @@ gulp.task 'browser-sync' , () ->
       baseDir: DEST
     }
 
-  gulp.watch(["#{SRC}/**/*.js"], gulp.series('js', browserSync.reload));
-  gulp.watch(["#{DEST}/index.html"], browserSync.reload);
+  gulp.watch(["#{SRC}/**/*.js"], gulp.series('js', browserSync.reload))
+  gulp.watch(["#{DEST}/index.html"], browserSync.reload)
 
-gulp.task('serve', gulp.series('browser-sync'));
+gulp.task('serve', gulp.series('browser-sync'))
 
-gulp.task('build', gulp.parallel('js'));
-gulp.task 'default', gulp.series('build', 'serve');
+gulp.task('build', gulp.parallel('js'))
+gulp.task 'default', gulp.series('build', 'serve')
