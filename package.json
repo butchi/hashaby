@@ -16,7 +16,7 @@
     "hash",
     "fragment"
   ],
-  "author": "IWABUCHI Yuki",
+  "author": "IWABUCHI Yuuki",
   "license": "MIT",
   "devDependencies": {
     "babel-preset-es2015": "^6.1.18",
