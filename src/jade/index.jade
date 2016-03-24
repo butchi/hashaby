@@ -1,0 +1,27 @@
+doctype html
+html(lang='ja')
+  head
+    meta(charset='UTF-8')
+    title hashaby
+    <link rel="stylesheet" href="css/style.css">
+  body
+    .wrapper
+      section#section1
+        p あああ
+        p
+          a(href='#+clearHash') #+clearHash
+          a(href='http://www.example.com/', target='_blank') http://www.example.com/
+          a(href='#.section2') #.section2
+          a(href='#?section') #?section
+          a(href='#;alert(5)') #;alert(5)
+          a(href="#='.section' + '2'") #='.section' + '2'
+          a(href='#+showMessage') #+showMessage
+          a(href='#+showArg(5)') #+showArg(5)
+          a(href="#+showArg('hoge')") #+showArg('hoge')
+          a(href="#+showArgs(3, 'piyo')") #+showArgs(3, 'piyo')
+      section.section2
+        p いいい
+      section(data-id='section3')
+        p ううう
+    script(src='js/lib/hashaby.deco.js')
+    script(src='js/main.js')
