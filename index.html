@@ -1,66 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>hashaby</title>
-
-  <style>
-body {
-  height: 2000px;
-  margin-top: 500px;
-}
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <section id="section1">
-      <p>あああ</p>
-      <p>
-        <a href="#+clearHash">#+clearHash</a>
-        <a href="http://www.example.com/" target="_blank">http://www.example.com/</a>
-        <a href="#.section2">#.section2</a>
-        <a href="#?section">#?section</a>
-        <a href="#;alert(5)">#;alert(5)</a>
-        <a href="#='.section' + '2'">#='.section' + '2'</a>
-        <a href="#+showMessage">#+showMessage</a>
-        <a href="#+showArg(5)">#+showArg(5)</a>
-        <a href="#+showArg('hoge')">#+showArg('hoge')</a>
-        <a href="#+showArgs(3, 'piyo')">#+showArgs(3, 'piyo')</a>
-      </p>
-    </section>
-    <section class="section2">
-      <p>いいい</p>
-    </section>
-    <section data-id="section3">
-      <p>ううう</p>
-    </section>
-  </div>
-
-  <script src="hashaby.deco.js"></script>
-  <script>
-window.licker = window.licker || {};
-(function(ns) {
-  // hashaby.allowDomain(/0\.0\.0\.0/);
-  hashaby.allowDomain('butchi.github.io');
-  hashaby.doWith(window.licker);
-
-  ns.clearHash = function() {
-    hashaby.clearHash();
-  }
-
-  ns.showMessage = function() {
-    alert('Thanks, world!');
-  }
-
-  ns.showArg = function(arg) {
-    alert('Argument: ' + arg);
-  }
-
-  ns.showArgs = function() {
-    alert('Arguments: ' + [].join.call(arguments, ','));
-  }
-
-})(window.licker);
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>hashaby</title><link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section id="section1">
+        <p>あああ</p>
+        <p><a href="#+clearHash">#+clearHash</a><a href="http://www.example.com/" target="_blank">http://www.example.com/</a><a href="#.section2">#.section2</a><a href="#?section">#?section</a><a href="#;alert(5)">#;alert(5)</a><a href="#='.section' + '2'">#='.section' + '2'</a><a href="#+showMessage">#+showMessage</a><a href="#+showArg(5)">#+showArg(5)</a><a href="#+showArg('hoge')">#+showArg('hoge')</a><a href="#+showArgs(3, 'piyo')">#+showArgs(3, 'piyo')</a></p>
+      </section>
+      <section class="section2">
+        <p>いいい</p>
+      </section>
+      <section data-id="section3">
+        <p>ううう</p>
+      </section>
+    </div>
+    <script src="js/lib/hashaby.deco.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
