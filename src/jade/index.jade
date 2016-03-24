@@ -6,18 +6,66 @@ html(lang='ja')
     link(rel='stylesheet', href='css/style.css')
   body
     .wrapper
-      section#section1
+      header
+        h1(data-heading-level='1')
+          | Hashaby
+        nav.menu
+          a.btn-next(href='#.sec-about-heading')
+            | ↓
+      section.sec-about-heading
+        h2(data-heading-level='2')
+          | Hashabyとは？
+        a.btn-next(href='#.about-description')
+          | ↓
+        p.about-description
+          | Hashabyは
+          | URLハッシュ (URLフラグメント) を
+          br
+          | もっと便利に変身させるライブラリです。
+        a.btn-next(href='#.sec-about')
+          | ↓
+      section
+        h2(data-heading-level='2')
+          | ハッシュの本来の使われ方
+      section
+        h2(data-heading-level='2')
+          | 
+      section
+        h2(data-heading-level='2')
+          | 
+      section
+        h2(data-heading-level='2')
+          | 
+      section
+        h2(data-heading-level='2')
+          | 
+      section
+        h2(data-heading-level='2')
+          | 
+      section
+        h2(data-heading-level='2')
+          | 
+      section
         p あああ
         p
           a(href='#+clearHash') #+clearHash
+        p
           a(href='http://www.example.com/', target='_blank') http://www.example.com/
+        p
           a(href='#.section2') #.section2
+        p
           a(href='#?section') #?section
+        p
           a(href='#;alert(5)') #;alert(5)
+        p
           a(href="#='.section' + '2'") #='.section' + '2'
+        p
           a(href='#+showMessage') #+showMessage
+        p
           a(href='#+showArg(5)') #+showArg(5)
+        p
           a(href="#+showArg('hoge')") #+showArg('hoge')
+        p
           a(href="#+showArgs(3, 'piyo')") #+showArgs(3, 'piyo')
       section.section2
         p いいい
@@ -25,3 +73,4 @@ html(lang='ja')
         p ううう
     script(src='js/lib/hashaby.deco.js')
     script(src='js/main.js')
+    script(src='js/index.js')
