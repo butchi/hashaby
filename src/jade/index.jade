@@ -19,7 +19,7 @@ html(lang='ja')
           | ↓
         p.about-description
           | Hashabyは
-          | URLハッシュ (URLフラグメント) を
+          | URLハッシュ (フラグメント識別子) を
           br
           | もっと便利に変身させるライブラリです。
         a.btn-next(href='#.sec-about')
@@ -27,38 +27,62 @@ html(lang='ja')
       section
         h2(data-heading-level='2')
           | ハッシュの本来の使われ方
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        h2(data-heading-level='2')
-          | 
-      section
-        p あああ
         p
-          a(href='#+clearHash') #+clearHash
+          | URLの“#”以降の文字列をキーに、
+          | id属性かname属性に指定された要素にジャンプします。
+      section
+        h2(data-heading-level='2')
+          | 問題点
         p
-          a(href='http://www.example.com/', target='_blank') http://www.example.com/
+          | ページ内の好きなところにジャンプできない！
+      section
+        h2(data-heading-level='2')
+          | 主な機能: ジャンプ機能
+        p
+          | 3種類の方法でページ内ジャンプができます。
+      section
+        h2(data-heading-level='2')
+          | “.”（ドット）コマンド
+        p
+          | クラス名を指定してジャンプ
         p
           a(href='#.section2') #.section2
+      section
+        h2(data-heading-level='2')
+          | “?”（クエスチョン）コマンド 
+        p
+          | querySelectorでジャンプ
         p
           a(href='#?section') #?section
+      section
+        h2(data-heading-level='2')
+          | “=”（イコール）コマンド
         p
-          a(href='#;alert(5)') #;alert(5)
+          | 式を評価してジャンプ
         p
           a(href="#='.section' + '2'") #='.section' + '2'
+      section
+        h2(data-heading-level='2')
+          | ん？
+        p
+          | 今、計算した？
+      section
+        h2(data-heading-level='2')
+          | 関数の実行
+        p
+          | そう、関数も叩けます。
+      section
+        h2(data-heading-level='2')
+          | “;”（セミコロン）コマンド
+        p
+          | 式を実行
+        p
+          a(href='#;alert(5)') #;alert(5)
+      section
+        h2(data-heading-level='2')
+          | “+”（プラス）コマンド
+        p
+          | 設定したオブジェクト内のメソッドを実行
         p
           a(href='#+showMessage') #+showMessage
         p
@@ -67,10 +91,45 @@ html(lang='ja')
           a(href="#+showArg('hoge')") #+showArg('hoge')
         p
           a(href="#+showArgs(3, 'piyo')") #+showArgs(3, 'piyo')
-      section.section2
-        p いいい
-      section(data-id='section3')
-        p ううう
+      section
+        h2(data-heading-level='2')
+          | おさらい
+        p
+          | “.”: クラス名でジャンプ
+        p
+          | “?”: セレクターでジャンプ
+        p
+          | “=”: 評価してジャンプ
+        p
+          | “;”: 式を実行
+        p
+          | “+”: メソッドを実行
+      section
+        h2(data-heading-level='2')
+          | セキュリティー的に大丈夫なの？
+        p
+          | “;”コマンドと“=”コマンドは設定で許可したドメインでのみ実行可
+        p
+          | → テストサイトで有効にして本番サーバーでは動かさないようにできる
+        p
+          | “+”コマンドの引数は文字列と数値のみ
+      section
+        h2(data-heading-level='2')
+          | ついでの機能
+        p
+          a(href='#+clearHash') #+clearHash
+        p
+          | どうしても残っちゃう&quot;#&quot;を除去
+      section
+        h2(data-heading-level='2')
+          | 問題点
+        p
+          | そもそもHashabyを入れてるサイトでしか有効にならない！
+      section
+        h2(data-heading-level='2')
+          | 展望
+        p
+          | Chrome拡張で任意のサイトで実行できるように
     script(src='js/lib/hashaby.deco.js')
     script(src='js/main.js')
     script(src='js/index.js')

@@ -15,48 +15,86 @@
         <h2 data-heading-level="2">Hashabyとは？</h2><a href="#.about-description" class="btn-next">↓</a>
         <p class="about-description">
           Hashabyは
-          URLハッシュ (URLフラグメント) を<br>もっと便利に変身させるライブラリです。
+          URLハッシュ (フラグメント識別子) を<br>もっと便利に変身させるライブラリです。
         </p><a href="#.sec-about" class="btn-next">↓</a>
       </section>
       <section>
         <h2 data-heading-level="2">ハッシュの本来の使われ方</h2>
+        <p>
+          URLの“#”以降の文字列をキーに、
+          id属性かname属性に指定された要素にジャンプします。
+        </p>
       </section>
       <section>
-        <h2 data-heading-level="2"> </h2>
+        <h2 data-heading-level="2">問題点</h2>
+        <p>ページ内の好きなところにジャンプできない！</p>
       </section>
       <section>
-        <h2 data-heading-level="2"> </h2>
+        <h2 data-heading-level="2">主な機能: ジャンプ機能</h2>
+        <p>3種類の方法でページ内ジャンプができます。</p>
       </section>
       <section>
-        <h2 data-heading-level="2"> </h2>
-      </section>
-      <section>
-        <h2 data-heading-level="2"> </h2>
-      </section>
-      <section>
-        <h2 data-heading-level="2"> </h2>
-      </section>
-      <section>
-        <h2 data-heading-level="2"> </h2>
-      </section>
-      <section>
-        <p>あああ</p>
-        <p><a href="#+clearHash">#+clearHash</a></p>
-        <p><a href="http://www.example.com/" target="_blank">http://www.example.com/</a></p>
+        <h2 data-heading-level="2">“.”（ドット）コマンド</h2>
+        <p>クラス名を指定してジャンプ</p>
         <p><a href="#.section2">#.section2</a></p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">“?”（クエスチョン）コマンド </h2>
+        <p>querySelectorでジャンプ</p>
         <p><a href="#?section">#?section</a></p>
-        <p><a href="#;alert(5)">#;alert(5)</a></p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">“=”（イコール）コマンド</h2>
+        <p>式を評価してジャンプ</p>
         <p><a href="#='.section' + '2'">#='.section' + '2'</a></p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">ん？</h2>
+        <p>今、計算した？</p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">関数の実行</h2>
+        <p>そう、関数も叩けます。</p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">“;”（セミコロン）コマンド</h2>
+        <p>式を実行</p>
+        <p><a href="#;alert(5)">#;alert(5)</a></p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">“+”（プラス）コマンド</h2>
+        <p>設定したオブジェクト内のメソッドを実行</p>
         <p><a href="#+showMessage">#+showMessage</a></p>
         <p><a href="#+showArg(5)">#+showArg(5)</a></p>
         <p><a href="#+showArg('hoge')">#+showArg('hoge')</a></p>
         <p><a href="#+showArgs(3, 'piyo')">#+showArgs(3, 'piyo')</a></p>
       </section>
-      <section class="section2">
-        <p>いいい</p>
+      <section>
+        <h2 data-heading-level="2">おさらい</h2>
+        <p>“.”: クラス名でジャンプ</p>
+        <p>“?”: セレクターでジャンプ</p>
+        <p>“=”: 評価してジャンプ</p>
+        <p>“;”: 式を実行</p>
+        <p>“+”: メソッドを実行</p>
       </section>
-      <section data-id="section3">
-        <p>ううう</p>
+      <section>
+        <h2 data-heading-level="2">セキュリティー的に大丈夫なの？</h2>
+        <p>“;”コマンドと“=”コマンドは設定で許可したドメインでのみ実行可</p>
+        <p>→ テストサイトで有効にして本番サーバーでは動かさないようにできる</p>
+        <p>“+”コマンドの引数は文字列と数値のみ</p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">ついでの機能</h2>
+        <p><a href="#+clearHash">#+clearHash</a></p>
+        <p>どうしても残っちゃう&quot;#&quot;を除去</p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">問題点</h2>
+        <p>そもそもHashabyを入れてるサイトでしか有効にならない！</p>
+      </section>
+      <section>
+        <h2 data-heading-level="2">展望</h2>
+        <p>Chrome拡張で任意のサイトで実行できるように</p>
       </section>
     </div>
     <script src="js/lib/hashaby.deco.js"></script>
