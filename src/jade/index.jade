@@ -4,6 +4,9 @@ mixin link(href, label)
   else
     a(href=href)= href
 
+mixin blank
+  p.blank
+
 doctype html
 html(lang='ja')
   head
@@ -17,11 +20,13 @@ html(lang='ja')
           | Hashaby
         nav.menu
           +link('#.sec-about-heading')
+          +blank
       section.sec-about-heading
         h2(data-heading-level='2')
           | Hashabyとは？
         p
           +link('#.about-description')
+          +blank
         p.about-description
           | Hashabyは
           | URLハッシュ (フラグメント識別子) を
@@ -29,6 +34,7 @@ html(lang='ja')
           | もっと便利に変身させるライブラリです。
         p
           +link('#.sec-about-hash')
+        +blank
       section.sec-about-hash
         h2(data-heading-level='2')
           | ハッシュの本来の使われ方
@@ -37,6 +43,7 @@ html(lang='ja')
           | id属性かname属性に指定された要素にジャンプします。
         p
           +link('#.sec-problem')
+        +blank
       section.sec-problem
         h2(data-heading-level='2')
           | 問題点
@@ -44,6 +51,7 @@ html(lang='ja')
           | ページ内の好きなところにジャンプできない！
         p
           +link('#.sec-solution')
+        +blank
       section.sec-solution
         h2(data-heading-level='2')
           | そこで
@@ -51,6 +59,7 @@ html(lang='ja')
           | 魔法のライブラリ“Hashaby”を作りました！
         p
           +link('#.sec-function-page-jump')
+        +blank
       section.sec-function-page-jump
         h2(data-heading-level='2')
           | 主な機能: ジャンプ機能
@@ -58,6 +67,7 @@ html(lang='ja')
           | 3種類の方法でページ内ジャンプができます。
         p
           +link('#.sec-command-find-class')
+        +blank
       section.sec-command-find-class
         h2(data-heading-level='2')
           | “.”（ドット）コマンド
@@ -65,6 +75,7 @@ html(lang='ja')
           | クラス名を指定してジャンプ
         p
           +link('#.sec-command-query')
+        +blank
       section.sec-command-query
         h2(data-heading-level='2')
           | “?”（クエスチョン）コマンド 
@@ -72,6 +83,7 @@ html(lang='ja')
           | querySelectorでジャンプ
         p
           +link('#?section[class="sec-command-jump"]')
+        +blank
       section.sec-command-jump
         h2(data-heading-level='2')
           | “=”（イコール）コマンド
@@ -79,6 +91,7 @@ html(lang='ja')
           | 式を評価してジャンプ
         p
           +link('#="."+["sec", "calculation"].join("-")')
+        +blank
       section.sec-calculation
         h2(data-heading-level='2')
           | ん？
@@ -86,6 +99,7 @@ html(lang='ja')
           | 今、計算した？
         p
           +link('#.sec-eval-function')
+        +blank
       section.sec-eval-function
         h2(data-heading-level='2')
           | 関数の実行
@@ -93,6 +107,7 @@ html(lang='ja')
           | そう、関数も叩けます。
         p
           +link('#.sec-command-exec')
+        +blank
       section.sec-command-exec
         h2(data-heading-level='2')
           | “;”（セミコロン）コマンド
@@ -100,6 +115,7 @@ html(lang='ja')
           | 式を実行
         p
           +link('#;alert(5)')
+        +blank
       section.sec-command-func
         h2(data-heading-level='2')
           | “+”（プラス）コマンド
@@ -113,6 +129,7 @@ html(lang='ja')
           +link('#+showArg("hoge")')
         p
           +link('#+showArgs(3, "piyo")')
+        +blank
       section.sec-command-list
         h2(data-heading-level='2')
           | おさらい
@@ -128,6 +145,7 @@ html(lang='ja')
           | “+”: メソッドを実行
         p
           +link('#.sec-security')
+        +blank
       section.sec-security
         h2(data-heading-level='2')
           | セキュリティー的に大丈夫なの？
@@ -139,6 +157,7 @@ html(lang='ja')
           | “+”コマンドの引数は文字列と数値のみ
         p
           +link('#.sec-function-appendix')
+        +blank
       section.sec-function-appendix
         h2(data-heading-level='2')
           | ついでの機能
@@ -148,6 +167,7 @@ html(lang='ja')
           | どうしても残っちゃう&quot;#&quot;を除去
         p
           +link('#.sec-task')
+        +blank
       section.sec-task
         h2(data-heading-level='2')
           | 問題点
@@ -155,6 +175,7 @@ html(lang='ja')
           | そもそもHashabyを入れてるサイトでしか有効にならない！
         p
           +link('#.sec-vision')
+        +blank
       section.sec-vision
         h2(data-heading-level='2')
           | 展望
@@ -162,11 +183,13 @@ html(lang='ja')
           | Chrome拡張で任意のサイトで実行できるように
         p
           +link('#.sec-conclusion')
+        +blank
       section.sec-conclusion
         h2(data-heading-level='2')
           | 以上
         p
           | ご清聴ありがとうございました。
+        +blank
     script(src='js/lib/hashaby.deco.js')
     script(src='js/main.js')
     script(src='js/index.js')
