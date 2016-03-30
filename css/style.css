@@ -5,5 +5,10 @@ body {
   font-size: 24px;
   font-size: 2.4rem; }
 
+pre code {
+  padding: 10px 20px;
+  background-color: #ccc;
+  border-radius: 5px; }
+
 .blank {
   margin-bottom: 1000px; }
