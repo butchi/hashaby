@@ -1,3 +1,9 @@
+mixin link(href, label)
+  if label
+    a(href=href)= label
+  else
+    a(href=href)= href
+
 doctype html
 html(lang='ja')
   head
@@ -10,92 +16,103 @@ html(lang='ja')
         h1(data-heading-level='1')
           | Hashaby
         nav.menu
-          a.btn-next(href='#.sec-about-heading')
-            | ↓
+          +link('#.sec-about-heading')
       section.sec-about-heading
         h2(data-heading-level='2')
           | Hashabyとは？
-        a.btn-next(href='#.about-description')
-          | ↓
+        p
+          +link('#.about-description')
         p.about-description
           | Hashabyは
           | URLハッシュ (フラグメント識別子) を
           br
           | もっと便利に変身させるライブラリです。
-        a.btn-next(href='#.sec-about')
-          | ↓
+        p
+          +link('#.sec-about-hash')
       section.sec-about-hash
         h2(data-heading-level='2')
           | ハッシュの本来の使われ方
         p
           | URLの“#”以降の文字列をキーに、
           | id属性かname属性に指定された要素にジャンプします。
+        p
+          +link('#.sec-problem')
       section.sec-problem
         h2(data-heading-level='2')
           | 問題点
         p
           | ページ内の好きなところにジャンプできない！
+        p
+          +link('#.sec-solution')
       section.sec-solution
         h2(data-heading-level='2')
           | そこで
         p
           | 魔法のライブラリ“Hashaby”を作りました！
+        p
+          +link('#.sec-function-page-jump')
       section.sec-function-page-jump
         h2(data-heading-level='2')
           | 主な機能: ジャンプ機能
         p
           | 3種類の方法でページ内ジャンプができます。
-      section-sec-command-find-class
+        p
+          +link('#.sec-command-find-class')
+      section.sec-command-find-class
         h2(data-heading-level='2')
           | “.”（ドット）コマンド
         p
           | クラス名を指定してジャンプ
         p
-          a(href='#.section2') #.section2
+          +link('#.sec-command-query')
       section.sec-command-query
         h2(data-heading-level='2')
           | “?”（クエスチョン）コマンド 
         p
           | querySelectorでジャンプ
         p
-          a(href='#?section') #?section
+          +link('#?section[class="sec-command-jump"]')
       section.sec-command-jump
         h2(data-heading-level='2')
           | “=”（イコール）コマンド
         p
           | 式を評価してジャンプ
         p
-          a(href="#='.section' + '2'") #='.section' + '2'
+          +link('#="."+["sec", "calculation"].join("-")')
       section.sec-calculation
         h2(data-heading-level='2')
           | ん？
         p
           | 今、計算した？
+        p
+          +link('#.sec-eval-function')
       section.sec-eval-function
         h2(data-heading-level='2')
           | 関数の実行
         p
           | そう、関数も叩けます。
+        p
+          +link('#.sec-command-exec')
       section.sec-command-exec
         h2(data-heading-level='2')
           | “;”（セミコロン）コマンド
         p
           | 式を実行
         p
-          a(href='#;alert(5)') #;alert(5)
+          +link('#;alert(5)')
       section.sec-command-func
         h2(data-heading-level='2')
           | “+”（プラス）コマンド
         p
           | 設定したオブジェクト内のメソッドを実行
         p
-          a(href='#+showMessage') #+showMessage
+          +link('#+showMessage')
         p
-          a(href='#+showArg(5)') #+showArg(5)
+          +link('#+showArg(5)')
         p
-          a(href="#+showArg('hoge')") #+showArg('hoge')
+          +link('#+showArg("hoge")')
         p
-          a(href="#+showArgs(3, 'piyo')") #+showArgs(3, 'piyo')
+          +link('#+showArgs(3, "piyo")')
       section.sec-command-list
         h2(data-heading-level='2')
           | おさらい
@@ -109,6 +126,8 @@ html(lang='ja')
           | “;”: 式を実行
         p
           | “+”: メソッドを実行
+        p
+          +link('#.sec-security')
       section.sec-security
         h2(data-heading-level='2')
           | セキュリティー的に大丈夫なの？
@@ -118,6 +137,8 @@ html(lang='ja')
           | → テストサイトで有効にして本番サーバーでは動かさないようにできる
         p
           | “+”コマンドの引数は文字列と数値のみ
+        p
+          +link('#.sec-function-appendix')
       section.sec-function-appendix
         h2(data-heading-level='2')
           | ついでの機能
@@ -125,16 +146,22 @@ html(lang='ja')
           a(href='#+clearHash') #+clearHash
         p
           | どうしても残っちゃう&quot;#&quot;を除去
+        p
+          +link('#.sec-task')
       section.sec-task
         h2(data-heading-level='2')
           | 問題点
         p
           | そもそもHashabyを入れてるサイトでしか有効にならない！
+        p
+          +link('#.sec-vision')
       section.sec-vision
         h2(data-heading-level='2')
           | 展望
         p
           | Chrome拡張で任意のサイトで実行できるように
+        p
+          +link('#.sec-conclusion')
       section.sec-conclusion
         h2(data-heading-level='2')
           | 以上
