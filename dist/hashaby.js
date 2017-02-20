@@ -2100,7 +2100,7 @@ var HashabyCore = function () {
     }
   }, {
     key: 'query',
-    value: function query(cmdStr) {
+    value: function query(cmdStr, animation) {
       var elm = document.querySelector(cmdStr);
       jumpTo({
         target: elm,
@@ -2116,7 +2116,7 @@ var HashabyCore = function () {
     }
   }, {
     key: 'jump',
-    value: function jump(cmdStr) {
+    value: function jump(cmdStr, animation) {
       var elm;
       if (isAllowDomain) {
         elm = document.querySelector(eval(cmdStr));

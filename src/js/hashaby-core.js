@@ -104,7 +104,7 @@ export default class HashabyCore {
     });
   }
 
-  query(cmdStr) {
+  query(cmdStr, animation) {
     var elm = document.querySelector(cmdStr);
     jumpTo({
       target: elm,
@@ -118,7 +118,7 @@ export default class HashabyCore {
     }
   }
 
-  jump(cmdStr) {
+  jump(cmdStr, animation) {
     var elm;
     if(isAllowDomain) {
       elm = document.querySelector(eval(cmdStr));
