@@ -1966,8 +1966,11 @@ return SweetScroll;
 })));
 
 },{}],3:[function(require,module,exports){
-(function (global){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -2002,11 +2005,11 @@ function jumpTo(target) {
   sweetScroll.toElement(target);
 }
 
-var Hashaby = function () {
-  function Hashaby() {
+var HashabyCore = function () {
+  function HashabyCore() {
     var _this = this;
 
-    _classCallCheck(this, Hashaby);
+    _classCallCheck(this, HashabyCore);
 
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
@@ -2050,7 +2053,7 @@ var Hashaby = function () {
     window.addEventListener('hashchange', hashchangeHandler);
   }
 
-  _createClass(Hashaby, [{
+  _createClass(HashabyCore, [{
     key: 'findClass',
     value: function findClass(cmdStr) {
       // var $elm = $('[class="' + cmdStr + '"]');
@@ -2141,15 +2144,11 @@ var Hashaby = function () {
     }
   }]);
 
-  return Hashaby;
+  return HashabyCore;
 }();
 
-// export
+exports.default = HashabyCore;
 
-
-global.hashaby = new Hashaby();
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"gator":1,"sweet-scroll":2}],4:[function(require,module,exports){
 (function (global){
 'use strict';
@@ -2170,16 +2169,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //   });
 // }
 
-if (global.jQuery) {
-  jQuery.fn.hashaby = function () {
-    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+// if(global.jQuery) {
+//   jQuery.fn.hashaby = function(opts = {}) {
+//     opts.elm = this[0];
+//     new HashabyCore(opts);
+//   };
+// }
 
-    opts.elm = this[0];
-    new _hashabyCore2.default(opts);
-  };
-}
-
-global.Hashaby = _hashabyCore2.default;
+// export
+global.hashaby = new _hashabyCore2.default();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./hashaby-core":3}]},{},[4]);

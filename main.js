@@ -1,5 +1,9 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -33,11 +37,11 @@ function jumpTo(target) {
   sweetScroll.toElement(target);
 }
 
-var Hashaby = function () {
-  function Hashaby() {
+var HashabyCore = function () {
+  function HashabyCore() {
     var _this = this;
 
-    _classCallCheck(this, Hashaby);
+    _classCallCheck(this, HashabyCore);
 
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
@@ -81,7 +85,7 @@ var Hashaby = function () {
     window.addEventListener('hashchange', hashchangeHandler);
   }
 
-  _createClass(Hashaby, [{
+  _createClass(HashabyCore, [{
     key: 'findClass',
     value: function findClass(cmdStr) {
       // var $elm = $('[class="' + cmdStr + '"]');
@@ -172,10 +176,7 @@ var Hashaby = function () {
     }
   }]);
 
-  return Hashaby;
+  return HashabyCore;
 }();
 
-// export
-
-
-global.hashaby = new Hashaby();
+exports.default = HashabyCore;

@@ -10,11 +10,12 @@ import HashabyCore from './hashaby-core';
 //   });
 // }
 
-if(global.jQuery) {
-  jQuery.fn.hashaby = function(opts = {}) {
-    opts.elm = this[0];
-    new HashabyCore(opts);
-  };
-}
+// if(global.jQuery) {
+//   jQuery.fn.hashaby = function(opts = {}) {
+//     opts.elm = this[0];
+//     new HashabyCore(opts);
+//   };
+// }
 
-global.Hashaby = HashabyCore;
+// export
+global.hashaby = new HashabyCore();

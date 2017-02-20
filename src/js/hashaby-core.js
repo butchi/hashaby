@@ -19,7 +19,7 @@ function jumpTo(target) {
   sweetScroll.toElement(target);
 }
 
-class Hashaby {
+export default class HashabyCore {
   constructor() {
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
@@ -138,6 +138,3 @@ class Hashaby {
     }
   }
 }
-
-// export
-global.hashaby = new Hashaby();
