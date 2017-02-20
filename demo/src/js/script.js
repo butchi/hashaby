@@ -1,21 +1,22 @@
-import ns from './module/ns';
+window.licker = window.licker || {};
+((ns) => {
+  // hashaby.allowDomain(/0\.0\.0\.0/);
+  hashaby.allowDomain('butchi.github.io');
+  hashaby.doWith(window.licker);
 
-// hashaby.allowDomain(/0\.0\.0\.0/);
-hashaby.allowDomain('butchi.github.io');
-hashaby.doWith(window.licker);
+  ns.clearHash = function() {
+    hashaby.clearHash();
+  };
 
-ns.clearHash = function() {
-  hashaby.clearHash();
-};
+  ns.showMessage = function() {
+    alert('Thanks, world!');
+  };
 
-ns.showMessage = function() {
-  alert('Thanks, world!');
-};
+  ns.showArg = function(arg) {
+    alert('Argument: ' + arg);
+  };
 
-ns.showArg = function(arg) {
-  alert('Argument: ' + arg);
-};
-
-ns.showArgs = function() {
-  alert('Arguments: ' + [].join.call(arguments, ','));
-};
+  ns.showArgs = function() {
+    alert('Arguments: ' + [].join.call(arguments, ','));
+  };
+})(window.licker);
