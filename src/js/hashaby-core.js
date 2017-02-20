@@ -12,7 +12,7 @@ var modeLi = {
 var isAllowDomain;
 var nameSpace = window;
 
-const sweetScroll = new SweetScroll();
+let sweetScroll;
 
 // TODO: SweetScrollカスタマイズ
 function jumpTo(target) {
@@ -20,7 +20,9 @@ function jumpTo(target) {
 }
 
 export default class HashabyCore {
-  constructor() {
+  constructor(opts = {}) {
+    sweetScroll = new SweetScroll(opts.sweetScroll, opts.sweetScrollContainer);
+
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
 
