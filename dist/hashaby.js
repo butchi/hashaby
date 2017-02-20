@@ -2001,8 +2001,17 @@ var nameSpace = window;
 var sweetScroll = void 0;
 
 // TODO: SweetScrollカスタマイズ
-function jumpTo(target) {
-  sweetScroll.toElement(target);
+function jumpTo(opts) {
+  var target = opts.target;
+  var animation = opts.animation;
+
+  if (animation) {
+    sweetScroll.toElement(target);
+  } else {
+    sweetScroll.toElement(target, {
+      duration: 0
+    });
+  }
 }
 
 var HashabyCore = function () {
@@ -2014,6 +2023,9 @@ var HashabyCore = function () {
     _classCallCheck(this, HashabyCore);
 
     sweetScroll = new _sweetScroll2.default(opts.sweetScroll, opts.sweetScrollContainer);
+
+    // new直後にloadイベントの代わりに実行
+    this.immediate = opts.immediate;
 
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
@@ -2034,9 +2046,13 @@ var HashabyCore = function () {
     });
 
     var hashchangeHandler = function hashchangeHandler(evt) {
+      var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
       var hash = location.hash;
       var operator = hash[1];
       var mode = modeLi[operator];
+
+      var animation = opts.animation;
 
       if (mode !== undefined) {
         var cmdStr = hash.replace(/^#./, '');
@@ -2049,26 +2065,47 @@ var HashabyCore = function () {
           }
         });
 
-        _this[mode](cmdStr);
+        _this[mode](cmdStr, animation);
       }
     };
 
-    window.addEventListener('load', hashchangeHandler);
-    window.addEventListener('hashchange', hashchangeHandler);
+    if (this.immediate) {
+      hashchangeHandler(null, {
+        animation: false
+      });
+    } else {
+      window.addEventListener('load', function (evt) {
+        hashchangeHandler(evt, {
+          animation: false
+        });
+      });
+    }
+
+    window.addEventListener('hashchange', function (evt) {
+      hashchangeHandler(evt, {
+        animation: true
+      });
+    });
   }
 
   _createClass(HashabyCore, [{
     key: 'findClass',
-    value: function findClass(cmdStr) {
+    value: function findClass(cmdStr, animation) {
       // var $elm = $('[class="' + cmdStr + '"]');
       var elm = document.querySelector('.' + cmdStr);
-      jumpTo(elm);
+      jumpTo({
+        target: elm,
+        animation: animation
+      });
     }
   }, {
     key: 'query',
     value: function query(cmdStr) {
       var elm = document.querySelector(cmdStr);
-      jumpTo(elm);
+      jumpTo({
+        target: elm,
+        animation: animation
+      });
     }
   }, {
     key: 'exec',
@@ -2083,7 +2120,10 @@ var HashabyCore = function () {
       var elm;
       if (isAllowDomain) {
         elm = document.querySelector(eval(cmdStr));
-        jumpTo(elm);
+        jumpTo({
+          target: elm,
+          animation: animation
+        });
       }
     }
 

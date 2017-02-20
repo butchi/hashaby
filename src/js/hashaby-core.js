@@ -15,13 +15,25 @@ var nameSpace = window;
 let sweetScroll;
 
 // TODO: SweetScrollカスタマイズ
-function jumpTo(target) {
-  sweetScroll.toElement(target);
+function jumpTo(opts) {
+  let target = opts.target;
+  let animation = opts.animation;
+
+  if(animation) {
+    sweetScroll.toElement(target);
+  } else {
+    sweetScroll.toElement(target, {
+      duration: 0,
+    });
+  }
 }
 
 export default class HashabyCore {
   constructor(opts = {}) {
     sweetScroll = new SweetScroll(opts.sweetScroll, opts.sweetScrollContainer);
+
+    // new直後にloadイベントの代わりに実行
+    this.immediate = opts.immediate;
 
     this.allowDomainArr = ['localhost'];
     this.forceHashchange = true;
@@ -41,10 +53,12 @@ export default class HashabyCore {
       }
     });
 
-    var hashchangeHandler = (evt) => {
+    var hashchangeHandler = (evt, opts = {}) => {
       var hash = location.hash;
       var operator = hash[1];
       var mode = modeLi[operator];
+
+      var animation = opts.animation;
 
       if(mode !== undefined) {
         let cmdStr = hash.replace(/^#./, '');
@@ -58,23 +72,44 @@ export default class HashabyCore {
           }
         });
 
-        this[mode](cmdStr);
+        this[mode](cmdStr, animation);
       }
     };
 
-    window.addEventListener('load', hashchangeHandler);
-    window.addEventListener('hashchange', hashchangeHandler);
+    if(this.immediate) {
+      hashchangeHandler(null, {
+        animation: false,
+      });
+    } else {
+      window.addEventListener('load', evt => {
+        hashchangeHandler(evt, {
+          animation: false,
+        });
+      });
+    }
+
+    window.addEventListener('hashchange', evt => {
+      hashchangeHandler(evt, {
+        animation: true,
+      });
+    });
   }
 
-  findClass(cmdStr) {
+  findClass(cmdStr, animation) {
     // var $elm = $('[class="' + cmdStr + '"]');
     var elm = document.querySelector('.' + cmdStr);
-    jumpTo(elm);
+    jumpTo({
+      target: elm,
+      animation
+    });
   }
 
   query(cmdStr) {
     var elm = document.querySelector(cmdStr);
-    jumpTo(elm);
+    jumpTo({
+      target: elm,
+      animation
+    });
   }
 
   exec(cmdStr) {
@@ -87,7 +122,10 @@ export default class HashabyCore {
     var elm;
     if(isAllowDomain) {
       elm = document.querySelector(eval(cmdStr));
-      jumpTo(elm);
+      jumpTo({
+        target: elm,
+        animation
+      });
     }
   }
 
